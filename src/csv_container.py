@@ -9,12 +9,14 @@ def list_of_dicts_2_list_of_strings(lst: List[dict]) -> List[str]:
     Assuming that keys are equal in all dicts. Otherwise, the error will be
     occurred or some keys might be lost."""
     columns = sorted(lst[0].keys())
-    return [','.join([str(dct[k]) for k in columns]) + '\n' for dct in lst]
+    values = [','.join([str(dct[k]) for k in columns]) + '\n' for dct in lst]
+    header = [','.join(columns) + '\n']
+    return header + values
 
 
 class ContainerCSV:
     def __init__(self, out_dir_path: str):
-        current_time = time.strftime('%Y-%M-%d_%H-%m-%S')
+        current_time = time.strftime('%Y-%m-%d_%H-%M-%S')
         self.filename = f'output_{current_time}'
         self.out_dir_path = out_dir_path
         self.storage = []  # List of dicts.
