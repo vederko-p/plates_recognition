@@ -3,6 +3,7 @@ import cv2
 
 from models.fake_model import FakeModel
 
+from csv_container import ContainerCSV
 from utils import check_source
 from configs.config_test_video import test_video_config
 
@@ -31,7 +32,7 @@ def process_video(
                 result = model(frame)
 
             # process result
-            print(result)
+            csv.write_line(result)
 
             # quit
             if cv2.waitKey(25) & 0xFF == ord('q'):
@@ -50,4 +51,6 @@ def main(config: dict, model):
 
 if __name__ == '__main__':
     my_model = FakeModel()
+    csv = ContainerCSV(test_video_config['output_csv_directory_path'])
     main(test_video_config, my_model)
+    csv.save()
