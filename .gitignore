@@ -1,1 +1,8 @@
 .idea/
+data/
+csv_output/
+*/__pycache__/
+*/*/__pycache__/
+csv metrics temp.ipynb
+*.ipynb_checkpoints/
+metrics_results/
