@@ -1,7 +1,6 @@
 
 import cv2
 
-
 from src.models.fake_model import FakeModel
 
 from csv_container import ContainerCSV
