@@ -22,15 +22,17 @@ class ContainerCSV:
         self.storage = []  # List of dicts.
                            # Assuming that keys are equal in all dicts.
 
-    def save(self):
+    def save(self) -> str:
         lines = list_of_dicts_2_list_of_strings(self.storage)
         filepath = os.path.join(self.out_dir_path, self.filename) + '.csv'
         with open(filepath, 'w') as output_file:
             output_file.writelines(lines)
         print(f'Data has been saved into .csv file: {filepath}')
+        return filepath
 
     def write_line(self, line: dict):
-        self.storage.append(line)
+        if line is not None:
+            self.storage.append(line)
 
 
 if __name__ == '__main__':
