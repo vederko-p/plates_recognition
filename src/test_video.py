@@ -1,13 +1,14 @@
 
 import cv2
 
-import pandas as pd
 
-from models.fake_model import FakeModel
+from src.models.fake_model import FakeModel
 
 from csv_container import ContainerCSV
 from utils import check_source
+from utils import read_as_df
 from configs.config_test_video import test_video_config
+from metrics_video import tpr_fpr, rec_deviation
 
 
 def process_video(
@@ -45,11 +46,17 @@ def process_video(
 
 
 def test_model_outputs(gt_csv_filepath: str, model_csv_filepath: str) -> None:
-    pass
+    df_gt = read_as_df(gt_csv_filepath)
+    df_st = read_as_df(model_csv_filepath)
+    tpr, fpr = tpr_fpr(df_gt, df_st)
+    rec_dev = rec_deviation(df_gt, df_st)
+    metrics_csv = ContainerCSV(test_video_config['metrics_csv_directory_path'])
+    metrics_csv.write_line({'tpr': tpr, 'fpr': fpr, 'rec_dev': rec_dev})
+    metrics_csv.save()
 
 
 def main(config: dict, model):
-    # deal with mode results (get from scratch or take already done):
+    # deal with model results (get from scratch or take already done):
     if config['st_filepath'] is None:
         csv_bd = ContainerCSV(test_video_config['output_csv_directory_path'])
         v_cap = cv2.VideoCapture(config['video_filepath'])
