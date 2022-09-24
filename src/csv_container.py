@@ -41,9 +41,9 @@ if __name__ == '__main__':
     import random
     test_storage = [{k: random.randint(1, 100) for k in 'abcde'}
                     for _ in range(10)]
-    for dct in test_storage:
-        print([v for v in dct.values()])
-        csv.write_line(dct)
+    for d in test_storage:
+        print([v for v in d.values()])
+        csv.write_line(d)
 
     csv.storage = test_storage
     csv.save()

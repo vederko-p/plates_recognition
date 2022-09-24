@@ -75,4 +75,3 @@ def main(config: dict, model):
 if __name__ == '__main__':
     my_model = FakeModel()
     main(test_video_config, my_model)
-
