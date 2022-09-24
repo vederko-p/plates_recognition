@@ -1,6 +1,8 @@
 
 import cv2
 
+import pandas as pd
+
 from models.fake_model import FakeModel
 
 from csv_container import ContainerCSV
@@ -11,6 +13,7 @@ from configs.config_test_video import test_video_config
 def process_video(
         cap: cv2.VideoCapture,
         model,
+        bd,
         display: bool = False,
         skip_frame_by_model: int = 0
 ) -> None:
@@ -32,7 +35,7 @@ def process_video(
                 result = model(frame)
 
             # process result
-            csv.write_line(result)
+            bd.write_line(result)
 
             # quit
             if cv2.waitKey(25) & 0xFF == ord('q'):
@@ -41,16 +44,28 @@ def process_video(
             break
 
 
+def test_model_outputs(gt_csv_filepath: str, model_csv_filepath: str) -> None:
+    pass
+
+
 def main(config: dict, model):
-    v_cap = cv2.VideoCapture(config['video_filepath'])
-    check_source(v_cap)
-    process_video(v_cap, model,
-                  display=config['display_video'],
-                  skip_frame_by_model=config['skip_frames_by_model'])
+    # deal with mode results (get from scratch or take already done):
+    if config['st_filepath'] is None:
+        csv_bd = ContainerCSV(test_video_config['output_csv_directory_path'])
+        v_cap = cv2.VideoCapture(config['video_filepath'])
+        check_source(v_cap)
+        process_video(v_cap, model, csv_bd,
+                      display=config['display_video'],
+                      skip_frame_by_model=config['skip_frames_by_model'])
+        model_results_filepath = csv_bd.save()
+    else:
+        model_results_filepath = config['st_filepath']
+
+    # get metrics:
+    test_model_outputs(config['gt_filepath'], model_results_filepath)
 
 
 if __name__ == '__main__':
     my_model = FakeModel()
-    csv = ContainerCSV(test_video_config['output_csv_directory_path'])
     main(test_video_config, my_model)
-    csv.save()
+
