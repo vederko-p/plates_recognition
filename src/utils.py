@@ -17,7 +17,7 @@ def get_seconds(timestamp: str) -> float:
 def read_as_df(filepath: str) -> pd.DataFrame:
     with open(filepath, 'r') as csv_file:
         csv_liens = csv_file.readlines()
-    data_list = list(map(lambda line: line[:-1].split(',') , csv_liens))
+    data_list = list(map(lambda line: line[:-1].split(','), csv_liens))
     df = pd.DataFrame(data_list[1:], columns=data_list[0])
     df['timestamp'] = df['timestamp'].apply(lambda t: get_seconds(t))
     return df
