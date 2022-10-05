@@ -5,7 +5,7 @@ import torch
 import numpy as np
 
 from .lprnet import build_lprnet
-from ..data import CHARS, CHARS_DICT
+from .load_data import CHARS, CHARS_DICT
 
 
 class PlateRecognizer:
@@ -25,13 +25,13 @@ class PlateRecognizer:
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.lprnet.to(self.device)
 
-        self.lprnet.load_state_dict(torch.load(weights_path))
+        self.lprnet.load_state_dict(torch.load(weights_path, map_location=self.device))
 
     def __call__(self, img: np.ndarray):
         height, width, _ = img.shape
         img_size = self.train_config["img_size"]
         if height != img_size[1] or width != img_size[0]:
-            img = cv2.resize(img, img_size)
+            img = cv2.resize(img, tuple(img_size))
 
         img = img.astype("float32")
         img = np.transpose(img, (2, 0, 1))
