@@ -7,6 +7,6 @@ test_video_config = {
     'st_filepath': None,
     'output_csv_directory_path': '../csv_output',
     'display_video': True,
-    'skip_frames_by_model': 0,
+    'skip_frames_by_model': 10,
     'metrics_csv_directory_path': '../metrics_results'
 }
