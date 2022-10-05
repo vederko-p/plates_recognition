@@ -1,5 +1,5 @@
 
-import utils
+from .utils import get_crop_from_np, np2tensor
 
 
 class ModelsManager:
@@ -25,7 +25,7 @@ class ModelsManager:
                 plates_crops.append(None)
             else:
                 plate_detect_coords = plate_detection.iloc[0].tolist()[:-1]
-                plate_crop = utils.get_crop_from_np(car, *plate_detect_coords)
+                plate_crop = get_crop_from_np(car, *plate_detect_coords)
                 plates_crops.append(plate_crop)
         plates_recognized = []
         for plate in plates_crops:
@@ -34,12 +34,12 @@ class ModelsManager:
         return plates_recognized
 
     def handle_colors(self, cars_crops: list) -> list:
-        return [self.color_model(utils.np2tensor(car)) for car in cars_crops]
+        return [self.color_model(np2tensor(car)) for car in cars_crops]
 
     @staticmethod
     def get_crops_from_pd(image, pd_detections) -> list:
         res = []
         for _, row in pd_detections.iterrows():
-            crop = utils.get_crop_from_np(image, *row.tolist()[:-1])
+            crop = get_crop_from_np(image, *row.tolist()[:-1])
             res.append(crop)
         return res

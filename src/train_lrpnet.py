@@ -9,8 +9,8 @@ from torch import optim
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
 
-from .models.lprnet import build_lprnet
-from .models.load_data import CHARS, LPRDataset
+from .custom_models.lprnet import build_lprnet
+from .custom_models.load_data import CHARS, LPRDataset
 
 
 def sparse_tuple_for_ctc(t_length, lengths):

@@ -4,7 +4,7 @@ import numpy as np
 import torch
 from typing import Tuple
 
-import utils
+from .utils import get_avg_patches, rgb01_2_hex
 
 
 def predict_color(
@@ -28,7 +28,7 @@ class LazyColor:
         self.size = size
 
     def __call__(self, frame: torch.tensor, **kwargs):
-        patches = utils.get_avg_patches(frame, self.size)
+        patches = get_avg_patches(frame, self.size)
         rgb01_color = predict_color(patches, **kwargs)
-        hex_color = utils.rgb01_2_hex(rgb01_color)
+        hex_color = rgb01_2_hex(rgb01_color)
         return hex_color
