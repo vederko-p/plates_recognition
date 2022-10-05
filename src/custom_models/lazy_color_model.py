@@ -23,7 +23,7 @@ def predict_color(
     return tuple(predict)
 
 
-class LazyOCR:
+class LazyColor:
     def __init__(self, size: Tuple[int, int] = (10, 10)):
         self.size = size
 
