@@ -1,15 +1,16 @@
 
 import cv2
 
-from src.models.fake_model import FakeModel
-
 from csv_container import ContainerCSV
-from utils import check_source
-from utils import read_as_df
+from our_utils import check_source
+from our_utils import read_as_df
 from configs.config_test_video import test_video_config
 from metrics_video import tpr_fpr, rec_deviation
 
-from models.models_manager import ModelsManager
+from custom_models.models_manager import ModelsManager
+from custom_models.lazy_color_model import LazyColor
+from custom_models.recognizer import PlateRecognizer
+from custom_models.yolo_detection_model import DetectionModel
 
 
 def process_video(
@@ -37,8 +38,9 @@ def process_video(
                 result = model(frame)
 
             # process result
-            print(result)
-            print('='*30)
+            if result is not None:
+                print(list(result))
+                print('='*30)
             # bd.write_line(result)
 
             # quit
@@ -76,5 +78,17 @@ def main(config: dict, model):
 
 
 if __name__ == '__main__':
-    my_model = FakeModel()
-    main(test_video_config, my_model)
+    cars_detector = DetectionModel('custom_models/cars_detection.pt')
+    lp_detector = DetectionModel('custom_models/plates_detection.pt')
+    ocr_model = PlateRecognizer(
+        "../weights/Final_LPRNet_model.pth",
+        "configs/train.yml")
+    color_recognition = LazyColor(size=(10, 10))
+
+    models_manager = ModelsManager(
+        cars_detector,
+        lp_detector,
+        ocr_model,
+        color_recognition)
+
+    main(test_video_config, models_manager)
