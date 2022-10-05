@@ -1,0 +1,20 @@
+max_epoch: 15 # epoch to train the network
+img_size: [94, 24] # the image size
+train_img_dirs: "../data/plates/train/img" # the train images path
+test_img_dirs: "../data/plates/val/img" # the test images path
+dropout_rate: 0.5
+learning_rate: 0.001 # base value of learning rate
+lpr_max_len: 9 # license plate number max length
+train_batch_size: 128
+test_batch_size: 128
+phase_train: True # train or test phase flag
+num_workers: 8 # number of workers used in dataloading
+cuda: True # use cuda to train model
+resume_epoch: 0 # resume iter for retraining
+save_interval: 500 # interval for save model state dict
+test_interval: 500 # interval for evaluate
+momentum: 0.9 # momentum
+weight_decay: 0.00002 # weight decay for SGD
+lr_schedule: [4, 8, 12, 14, 16] # schedule for learning rate
+save_folder: "../weights/" # location to save checkpoint models
+pretrained_model: "" # pretrained base model
