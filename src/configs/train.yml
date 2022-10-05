@@ -16,5 +16,5 @@ test_interval: 500 # interval for evaluate
 momentum: 0.9 # momentum
 weight_decay: 0.00002 # weight decay for SGD
 lr_schedule: [4, 8, 12, 14, 16] # schedule for learning rate
-save_folder: "../weights/" # location to save checkpoint models
+save_folder: "../weights/" # location to save checkpoint custom_models
 pretrained_model: "" # pretrained base model
