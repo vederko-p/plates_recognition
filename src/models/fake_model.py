@@ -5,6 +5,6 @@ class FakeModel:
             'number': '123',  # RUS letters
             'color': 'red',  # HTML HEX
             'type': 'big',
-            'timestamp': 'day'  # h-m-s
+            'timestamp': '00-00-00'  # h-m-s
         }
         return result

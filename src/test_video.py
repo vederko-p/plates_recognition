@@ -9,6 +9,8 @@ from utils import read_as_df
 from configs.config_test_video import test_video_config
 from metrics_video import tpr_fpr, rec_deviation
 
+from models.models_manager import ModelsManager
+
 
 def process_video(
         cap: cv2.VideoCapture,
