@@ -37,7 +37,9 @@ def process_video(
                 result = model(frame)
 
             # process result
-            bd.write_line(result)
+            print(result)
+            print('='*30)
+            # bd.write_line(result)
 
             # quit
             if cv2.waitKey(25) & 0xFF == ord('q'):
