@@ -2,9 +2,9 @@
 
 ## Данные
 
-1. [Детекция автомобилей](https://tcd.miovision.com/)
-2. [Детекция номеров](https://www.kaggle.com/datasets/evgrafovmaxim/nomeroff-russian-license-plates)
-3. [Распознавание номеров](https://www.kaggle.com/datasets/evgrafovmaxim/nomeroff-russian-license-plates)
+1. Детекция автомобилей: [MIOvision Traffic Camera Dataset](https://tcd.miovision.com/)
+2. Детекция номеров: [Car License Plate Detection](https://www.kaggle.com/datasets/evgrafovmaxim/nomeroff-russian-license-plates)
+3. Распознавание номеров[Nomeroff Russian license plates](https://www.kaggle.com/datasets/evgrafovmaxim/nomeroff-russian-license-plates)
 
 ## Модуль тестирования модели на видео
 
@@ -57,5 +57,34 @@ FPR^{*} = \dfrac{FP}{TP+FP}
 V = E_{t_j}
 
 ## Устройство системы
+
 ![](images/1.png)
+
 ![](images/2.png)
+
+## Результаты обучения
+
+* Детекция транспортных средств
+
+| model        | Parameters                      | P    | R   | mAP50| mAP50-95 |
+| -------------|:-------------------------------:| -----|-----|------|----------|
+| Yolo5m       |size 736, 11 classes, 10 epochs  | 0.67 | 0.66| 0.69 | 0.47     |
+| Yolo5m       |size 416, 7 classes, 20 epochs   | 0.83 | 0.81| 0.86 | 0.62     |
+| Yolo5m       |size 416, 7 classes, 20 epochs,<br /> lr=0.1, change augmentations   | 0.83 | 0.81| 0.85 | 0.6     |
+
+* Детекция номера
+
+| model        | Parameters                      | P    | R   | mAP50| mAP50-95 |
+| -------------|:-------------------------------:| -----|-----|------|----------|
+| Yolo5m       |size 256, 50 epochs  | 0.87 | 0.81| 0.86 | 0.45     |
+| Yolo5m       |size 256, 50 epochs, iou_t=0.30,<br /> anchor_t=3.0, change augmentations | 0.85 | 0.65| 0.77 | 0.37     |
+| Yolo5m       |size 256, 50 epochs,<br /> change augmentations   | 0.95 | 0.79| 0.88 | 0.45     |
+| Yolo5m       |size 256, 100 epochs,<br /> change augmentations   | 0.95 | 0.87| 0.94 | 0.52     |
+
+* Распознавание номера
+
+| model        | Parameters                      | P    | R   | mAP50| mAP50-95 |
+| -------------|:-------------------------------:| -----|-----|------|----------|
+|      |  |  | |  |      |
+|      |  |  | |  |      |
+|      |  |  | |  |      |
