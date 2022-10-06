@@ -63,6 +63,6 @@ Nomeroff Russian license plates - распознавание номера авт
 | -------------|:-------------------------------:| -----|-----|------|----------|
 | Yolo5m       |size 736, 11 classes, 10 epochs  | 0.67 | 0.66| 0.69 | 0.47     |
 | Yolo5m       |size 416, 7 classes, 20 epochs   | 0.83 | 0.81| 0.86 | 0.62     |
-| Yolo5m       |size 416, 7 classes, 20 epochs, lr=0.1, change augmentations   | 0.83 | 0.81| 0.85 | 0.6     |
+| Yolo5m       |size 416, 7 classes, 20 epochs,   lr=0.1, change augmentations   | 0.83 | 0.81| 0.85 | 0.6     |
 
 
