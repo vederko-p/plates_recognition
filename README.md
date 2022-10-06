@@ -59,6 +59,7 @@ Nomeroff Russian license plates - распознавание номера авт
 
 | model        | Parameters                      | P    | R   | mAP50| mAP50-95 |
 | -------------|:-------------------------------:| -----|-----|------|----------|
+|dd                                                                             |
 | Yolo5m       |size 736, 11 classes, 10 epochs  | 0.67 | 0.66| 0.69 | 0.47     |
 
 
