@@ -27,6 +27,12 @@
 принимать на вход кадр и возвращать словарь с фиксированным набором ключей, где
 значения по ключам - строки.
 
+**Данные для тестирования**
+
+[Видео](https://drive.google.com/drive/folders/15pBB7NV4O-79JGPyOSz7tTzKxKs-g_U0?usp=sharing)
+
+[Разметка](https://drive.google.com/drive/folders/1RiLTkINsjxkzxtzSe7QMnog_a6btQret?usp=sharing)
+
 **Запуск**
 
 Необходимо установить зависимости:
