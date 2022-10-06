@@ -50,7 +50,9 @@ V = E_{t_j}
 ## Данные
 
 MIOvision Traffic Camera Dataset - детекция транспортных средств (38200 изображений, 11 классов)
+
 Car License Plate Detection - детекция номера автомобиля (1118 изображений)
+
 Nomeroff Russian license plates - распознавание номера автомобиля (104400 изображений)
 
 ## Результаты обучения
